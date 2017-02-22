@@ -1,0 +1,54 @@
+var path = require('path');
+var webpack = require('webpack');
+
+const NODE_ENV = process.env.NODE_ENV || 'development';
+module.exports = {
+
+    entry: "./src/main.js",
+
+    output: {
+        path: __dirname + '/public/build',
+        publicPath: "/build",
+        filename: "bundle.js"
+    },
+
+
+    devtool: NODE_ENV=='devlopment' ? 'source-map' : false,
+
+    plugins:[
+        new webpack.NoEmitOnErrorsPlugin()
+    ],
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
+                exclude: [/node_modules/, /public/],
+
+            },
+            {
+                test: /\.jsx$/,
+                loader: "react-hot-loader!babel-loader",
+                exclude: [/node_modules/, /public/],
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader",
+            },
+            {
+                test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&name=[name]-[hash].[ext]'
+            }
+        ]
+    },
+    devServer: {
+        contentBase: "./public",
+        port: 8000,
+        proxy: {
+            '/api': {
+                target: 'https://localhost:8080'
+            }
+        },
+        historyApiFallback: true
+    },
+}
