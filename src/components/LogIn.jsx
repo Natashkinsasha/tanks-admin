@@ -63,7 +63,7 @@ export default connect(null, (dispatch) => (
         login: (user) => {
             return login(user).then((response) => {
                 dispatch((dispatch) => {
-                    loginSuccess(response.data, response).then(() => {
+                    dispatch(loginSuccess(response.data, response)).then(() => {
                         dispatch(push("/"));
                     })
                 });

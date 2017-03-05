@@ -22,6 +22,24 @@ const DesktopMenu = ({size, ...props}) => {
         <div>
             <Menu size={size || "small"}>
                 <Menu.Item header>Танчики</Menu.Item>
+                <Menu.Item
+                    as={IndexLink}
+                    name='rooms'
+                    to='/rooms'
+                    activeClassName="active"
+                    content='Rooms'
+                />
+
+                <Menu.Item
+                    activeClassName="active"
+                    as={IndexLink}
+                    name='players'
+                    to='/players'
+                    content='Players'
+                    onClick={()=>{
+                        props.players();
+                    }}
+                />
                 <AuthorizationPanel isAuthorized={props.isAuthorized} onLogin={props.login}
                                     onLogout={props.logout}
                                     onSingUp={props.singUp}
