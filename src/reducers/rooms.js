@@ -31,7 +31,6 @@ const roomsReducer = (state = initialState, action) => {
         case types.CLOSE_ROOMS_RESPONSE:
             return {...state, response: null}
     }
-
     return state;
 }
 

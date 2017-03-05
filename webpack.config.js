@@ -4,10 +4,10 @@ var webpack = require('webpack');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports = {
 
-    entry: "./src/main.js",
+    entry: path.join(__dirname, 'src/main.js'),
 
     output: {
-        path: __dirname + '/public/build',
+        path: path.join(__dirname, '/public/build'),
         publicPath: "/build",
         filename: "bundle.js"
     },
